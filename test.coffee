@@ -57,6 +57,7 @@ request loginOptions, (loginError, loginResponse, loginBody) ->
 
 parseBody = (body) ->
 	$ = cheerio.load(body)
+	courses = []
 	$('table.PSGROUPBOXWBO').each (index, value) ->
 		if index != 0
 			course = {
@@ -82,10 +83,10 @@ parseBody = (body) ->
 					instructor: nodes[i+2]
 					date: nodes[i+3]
 				course['lessons'].push(lesson)
-			console.log(course)
+			courses.push(course)
 			#console.log(course)
 			#console.log(nodes)
-			
+	console.log(courses)
 
 content = fs.readFileSync('result.html')
 parseBody(content)

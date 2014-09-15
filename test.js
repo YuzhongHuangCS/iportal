@@ -55,9 +55,10 @@
   'request loginOptions, (loginError, loginResponse, loginBody) ->\n	if loginError\n		console.log(loginError)\n	else\n		#console.log(loginResponse.statusCode, loginBody)\n		#console.log(loginResponse)\n		request listOptions, (listError, listResponse, listBody) ->\n			if listError\n				console.log(listError)\n			else\n				console.log(listBody)\n				#parseBody(listBody)\n';
 
   parseBody = function(body) {
-    var $;
+    var $, courses;
     $ = cheerio.load(body);
-    return $('table.PSGROUPBOXWBO').each(function(index, value) {
+    courses = [];
+    $('table.PSGROUPBOXWBO').each(function(index, value) {
       var course, i, lesson, nodes, _i, _ref;
       if (index !== 0) {
         course = {
@@ -86,9 +87,10 @@
           };
           course['lessons'].push(lesson);
         }
-        return console.log(course);
+        return courses.push(course);
       }
     });
+    return console.log(courses);
   };
 
   content = fs.readFileSync('result.html');
