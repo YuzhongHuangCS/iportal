@@ -1,1 +1,44 @@
-<p>index.html</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>pageTitle</title>
+    <link rel="stylesheet" href="bower_components/jquery-mobile/jquery.mobile-1.4.4.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery-mobile/jquery.mobile-1.4.4.min.js"></script>
+  </head>
+  <body>
+    <div data-role="page" id="login" class="ui-page ui-page-footer-fixed">
+      <div data-role="header">
+        <h1>iPortal - Portal that threat you as friends</h1>
+      </div>
+      <div role="main" class="ui-content">
+        <form id="loginForm">
+          <label for="id">Student ID:</label>
+          <input name="id" id="id" value="" type="text">
+          <label for="password">PassWord:</label>
+          <input name="password" id="password" value="" type="text">
+          <div class="ui-shadow ui-btn ui-corner-all ui-btn-b">Login</div>
+        </form>
+        <p>I'm first in the source order so I'm shown as the page.</p></p>
+        <p>View internal page called<a href="#bar">bar</a></p>
+      </div>
+    </div>
+    <div data-role="page" id="list">
+      <div data-role="header">
+        <h1>Bar</h1>
+      </div>
+      <div role="main" class="ui-content">
+        <p>I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that references my id is beeing clicked.</p>
+        <p><a href="#foo">Back to foo</a></p>
+      </div>
+      <div data-role="footer">
+        <h4>Page Footer</h4>
+      </div>
+    </div>
+  </body>
+</html>

@@ -76,7 +76,7 @@ parse = (body, res) ->
 					time: nodes[i]
 					room: nodes[i+1]
 					instructor: nodes[i+2]
-					date: nodes[i+3]
+					date: nodes[i+3].split(' - ')[0]
 				course['lessons'].push(lesson)
 
 			courses.push(course)

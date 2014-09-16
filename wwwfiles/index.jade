@@ -1,0 +1,42 @@
+doctype html
+html
+	head
+		meta(charset="UTF-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+		meta(name="renderer" content="webkit")
+		meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+		title pageTitle
+		link(rel="stylesheet" href="bower_components/jquery-mobile/jquery.mobile-1.4.4.min.css")
+		link(rel="stylesheet" href="css/style.css")
+		script(src="bower_components/jquery/dist/jquery.min.js")
+		script(src="bower_components/jquery-mobile/jquery.mobile-1.4.4.min.js")
+
+	body
+		div(data-role="page" id="login" class="ui-page ui-page-footer-fixed")
+			div(data-role="header")
+				h1 iPortal - Portal that threat you as friends
+
+			div.ui-content(role="main")
+				form#loginForm
+					label(for="id") Student ID:
+					input(name="id" id="id" value="" type="text")
+					label(for="password") PassWord:
+					input(name="password" id="password" value="" type="text")
+					div(class="ui-shadow ui-btn ui-corner-all ui-btn-b") Login
+
+				p I'm first in the source order so I'm shown as the page.</p>
+				p View internal page called
+					a(href="#bar") bar
+
+
+		div(data-role="page" id="list")
+			div(data-role="header")
+				h1 Bar
+
+			div.ui-content(role="main")
+				p I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that references my id is beeing clicked.
+				p
+					a(href="#foo") Back to foo
+
+			div(data-role="footer")
+				h4 Page Footer

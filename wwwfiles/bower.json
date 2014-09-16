@@ -1,0 +1,11 @@
+{
+  "name": "iportal",
+  "description": "iportal is a enhanced and mobile optimized version of myportal in SUTD",
+  "version": "0.0.1",
+  "homepage": "http://iportal.pillowsky.org",
+  "license": "Apache License",
+  "private": true,
+  "dependencies": {
+    "jquery": "x"
+  }
+}
