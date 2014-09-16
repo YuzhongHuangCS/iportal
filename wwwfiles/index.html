@@ -5,27 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>pageTitle</title>
+    <title>iPortal - Promise to be your friend</title>
     <link rel="stylesheet" href="bower_components/jquery-mobile/jquery.mobile-1.4.4.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/jquery-mobile/jquery.mobile-1.4.4.min.js"></script>
+    <script src="js/script.js"></script>
   </head>
   <body>
     <div data-role="page" id="login" class="ui-page ui-page-footer-fixed">
       <div data-role="header">
-        <h1>iPortal - Portal that threat you as friends</h1>
+        <h1>iPortal - Promise to be your friend</h1>
       </div>
       <div role="main" class="ui-content">
         <form id="loginForm">
           <label for="id">Student ID:</label>
-          <input name="id" id="id" value="" type="text">
+          <input name="id" id="id" type="text">
           <label for="password">PassWord:</label>
-          <input name="password" id="password" value="" type="text">
-          <div class="ui-shadow ui-btn ui-corner-all ui-btn-b">Login</div>
+          <input name="password" id="password" type="password" autocomplete="off"><br>
+          <div id="loginButton" class="ui-shadow ui-btn ui-corner-all ui-btn-b">Login</div>
         </form>
-        <p>I'm first in the source order so I'm shown as the page.</p></p>
-        <p>View internal page called<a href="#bar">bar</a></p>
       </div>
     </div>
     <div data-role="page" id="list">
