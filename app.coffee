@@ -1,3 +1,4 @@
+'use strict'
 express = require 'express'
 fetcher = require './fetcher'
 app = express()

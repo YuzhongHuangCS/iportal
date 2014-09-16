@@ -1,3 +1,4 @@
+'use strict'
 cheerio = require 'cheerio'
 
 run = (id, password, res) ->
