@@ -1,5 +1,5 @@
 doctype html
-html
+html(manifest="cache.manifest")
 	head
 		meta(charset="UTF-8")
 		meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
@@ -11,6 +11,7 @@ html
 		script(src="bower_components/jquery/dist/jquery.min.js")
 		script(src="bower_components/jquery-mobile/jquery.mobile-1.4.4.min.js")
 		script(src="js/script.js")
+
 
 	body
 		div(data-role="page" id="login" class="ui-page ui-page-footer-fixed")
@@ -26,21 +27,11 @@ html
 					div#loginButton(class="ui-shadow ui-btn ui-corner-all ui-btn-b") Login
 
 		div(data-role="page" id="list")
+			include ./panel.jade
+
 			div(data-role="header")
 				a(href="#toolsPanel" class="ui-btn ui-shadow ui-btn-icon-left ui-icon-bullets") Menu
 				h1#todayDate Today's class List
-			
-			div(data-role="panel" id="toolsPanel")
-				ul(data-role="listview")
-					li iPortal
-					li(data-icon="clock")
-						a(href="#plan") What's coming
-					li(data-icon="refresh")
-						a Refresh
-					li(data-icon="back")
-						a Logout
-					li(data-icon="info")
-						a(href="#about") About
 			
 			div.ui-content(role="main" id="courseList")
 
@@ -53,7 +44,10 @@ html
 							button(class="ui-btn ui-shadow ui-btn-icon-right ui-icon-arrow-r" id="tomorrow") Tomorrow
 
 		div(data-role="page" id="plan")
+			include ./panel.jade
+
 			div(data-role="header")
+				a(href="#toolsPanel" class="ui-btn ui-shadow ui-btn-icon-left ui-icon-bullets") Menu
 				h1 What's coming soon?
 
 			div.ui-content(role="main")
@@ -75,7 +69,10 @@ html
 				p a palace like quora that you can put your comments on a course and others vote for it.
 
 		div(data-role="page" id="about")
+			include panel.jade
+
 			div(data-role="header")
+				a(href="#toolsPanel" class="ui-btn ui-shadow ui-btn-icon-left ui-icon-bullets") Menu
 				h1 About
 
 			div.ui-content(role="main")

@@ -12,14 +12,11 @@ $(
 
 		#$.mobile.changePage "#list", {allowSamePageTransition: true}
 		$('#loginButton').click ->
-			'''
 			$.ajax
 				type: 'GET'
 				url: 'query'
 				data: $('#loginForm').serialize()
 				success: parse
-			'''
-			parse(JSON.parse(localStorage.getItem('courses')))
 
 		$('#yesterday').click ->
 			update(-1)
@@ -29,7 +26,7 @@ $(
 )
 
 parse = (body) ->
-	#localStorage.setItem('courses', JSON.stringify(body))
+	localStorage.setItem('courses', JSON.stringify(body))
 
 	calendar = {}
 
