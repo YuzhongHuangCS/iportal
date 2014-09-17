@@ -5,25 +5,50 @@ $(
 			enterKeyCode = 13
 			if event.keyCode == enterKeyCode
 				$('#loginButton').click()
-		
+
 		$(window).on 'load', (event) ->
+			if not localStorage.getItem('calendar')
+				location.hash = '#list'
+			else
+				location.hash = '#login'
+
+		$(window).on 'load hashchange', (event) ->
 			if location.hash == '#list'
 				today()
 
-		#$.mobile.changePage "#list", {allowSamePageTransition: true}
 		$('#loginButton').click ->
-			$.ajax
-				type: 'GET'
-				url: 'query'
-				data: $('#loginForm').serialize()
-				success: parse
+			queryString = $('#loginForm').serialize()
+			localStorage.setItem('queryString', queryString)
+			fetch(queryString)
 
 		$('#yesterday').click ->
 			update(-1)
 		$('#tomorrow').click ->
 			update(1)
 
+		$('#refreshButton').click ->
+			fetch(localStorage.getItem('queryString'))
+
+		$('#logoutButton').click ->
+			localStorage.removeItem('queryString')
+			localStorage.removeItem('courses')
+			localStorage.removeItem('calendar')
+			location.hash = '#login'
 )
+
+fetch = (queryString) ->
+	$.mobile.loading 'show',
+		text: "Preparing data may take a long time, but it is needed only on the first time.",
+		textVisible: true,
+		textonly: false,
+	
+	$.ajax
+		type: 'GET'
+		url: 'query'
+		data: queryString
+		success: (body)->
+			parse(body)
+			$.mobile.loading('hide')
 
 parse = (body) ->
 	localStorage.setItem('courses', JSON.stringify(body))
@@ -45,7 +70,7 @@ parse = (body) ->
 			calendar[year][month][day].push(lesson)
 
 	localStorage.setItem('calendar', JSON.stringify(calendar))
-	today()
+	location.hash = '#list'
 
 today = ->
 	window.monthDayCount =
@@ -129,7 +154,6 @@ render = (year, month, day) ->
 	data = JSON.parse(localStorage.getItem('calendar'))
 	if data[year][month][day]?
 		courses = data[year][month][day]
-		console.log courses
 
 		html = ''
 		for course in courses
@@ -154,5 +178,3 @@ render = (year, month, day) ->
 		html += '</div>'
 		
 		$('#courseList').html(html)
-
-	location.hash = '#list'
