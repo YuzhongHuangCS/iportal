@@ -23,14 +23,18 @@ html
 					input(name="id" id="id" type="text")
 					label(for="password") PassWord:
 					input(name="password" id="password" type="password" autocomplete="off")
-					br
 					div#loginButton(class="ui-shadow ui-btn ui-corner-all ui-btn-b") Login
 
 		div(data-role="page" id="list")
 			div(data-role="header")
-				h1 Today's class List
+				h1#todayDate Today's class List
 
 			div.ui-content(role="main" id="courseList")
 
-			div(data-role="footer")
-				h4 Page Footer
+			div(data-role="footer" data-position="fixed")
+					div(data-role="navbar")
+						ul
+							li
+								<button class="ui-btn ui-shadow ui-btn-icon-left ui-icon-arrow-l" id="yesterday">Yesterday</button>
+							li
+								<button class="ui-btn ui-shadow ui-btn-icon-right ui-icon-arrow-r" id="tomorrow">Tomorrow</button>
