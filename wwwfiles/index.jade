@@ -34,13 +34,13 @@ html
 				ul(data-role="listview")
 					li iPortal
 					li(data-icon="clock")
-						a What's coming
+						a(href="#plan") What's coming
 					li(data-icon="refresh")
 						a Refresh
 					li(data-icon="back")
 						a Logout
 					li(data-icon="info")
-						a About
+						a(href="#about") About
 			
 			div.ui-content(role="main" id="courseList")
 
@@ -51,3 +51,33 @@ html
 							button(class="ui-btn ui-shadow ui-btn-icon-left ui-icon-arrow-l" id="yesterday") Yesterday
 						li
 							button(class="ui-btn ui-shadow ui-btn-icon-right ui-icon-arrow-r" id="tomorrow") Tomorrow
+
+		div(data-role="page" id="plan")
+			div(data-role="header")
+				h1 What's coming soon?
+
+			div.ui-content(role="main")
+				h3 Weekly view
+				p This should be complete within this week, because I will check the course for next week on weekend.
+
+				h3 Announcement display
+				p Some announcement on myportal won't have e-mail to remind, so I will include it.
+
+				h3 Announcement subscribe
+				p send e-mail to me for announcement on myportal.
+
+				hr
+
+				h3 Follows will come later
+				h4 Course chatroom
+				p a chatroom that everyone has enroll the course has automatically added and is convenient to discus.
+				h4 Course Quora
+				p a palace like quora that you can put your comments on a course and others vote for it.
+
+		div(data-role="page" id="about")
+			div(data-role="header")
+				h1 About
+
+			div.ui-content(role="main")
+				h2 iPortal is a mobile-optimized version of myportal
+				p I am writing it so hurry that do not have to to complete this.
