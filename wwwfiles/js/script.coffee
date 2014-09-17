@@ -10,6 +10,7 @@ $(
 			if location.hash == '#list'
 				today()
 
+		#$.mobile.changePage "#list", {allowSamePageTransition: true}
 		$('#loginButton').click ->
 			'''
 			$.ajax
@@ -147,6 +148,14 @@ render = (year, month, day) ->
 
 		$('#courseList').html(html)
 	else
-		$('#courseList').html('<b>No course today</b>')
+		html = ''
+		html += '<div class="ui-body-a ui-corner-all courseUnit">'
+		html += 	'<div class="ui-bar ui-bar-a"><h3>No class today</h3></div>'
+		html += 	'<div class="ui-body ui-body-a">'
+		html += 		'<p>Feel free and easy!</p>'
+		html += 	'</div>'
+		html += '</div>'
+		
+		$('#courseList').html(html)
 
 	location.hash = '#list'

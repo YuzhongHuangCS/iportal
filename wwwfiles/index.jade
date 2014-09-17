@@ -27,14 +27,27 @@ html
 
 		div(data-role="page" id="list")
 			div(data-role="header")
+				a(href="#toolsPanel" class="ui-btn ui-shadow ui-btn-icon-left ui-icon-bullets") Menu
 				h1#todayDate Today's class List
-
+			
+			div(data-role="panel" id="toolsPanel")
+				ul(data-role="listview")
+					li iPortal
+					li(data-icon="clock")
+						a What's coming
+					li(data-icon="refresh")
+						a Refresh
+					li(data-icon="back")
+						a Logout
+					li(data-icon="info")
+						a About
+			
 			div.ui-content(role="main" id="courseList")
 
 			div(data-role="footer" data-position="fixed")
-					div(data-role="navbar")
-						ul
-							li
-								<button class="ui-btn ui-shadow ui-btn-icon-left ui-icon-arrow-l" id="yesterday">Yesterday</button>
-							li
-								<button class="ui-btn ui-shadow ui-btn-icon-right ui-icon-arrow-r" id="tomorrow">Tomorrow</button>
+				div(data-role="navbar")
+					ul
+						li
+							button(class="ui-btn ui-shadow ui-btn-icon-left ui-icon-arrow-l" id="yesterday") Yesterday
+						li
+							button(class="ui-btn ui-shadow ui-btn-icon-right ui-icon-arrow-r" id="tomorrow") Tomorrow
