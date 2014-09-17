@@ -7,7 +7,7 @@ $(
 				$('#loginButton').click()
 
 		$(window).on 'load', (event) ->
-			if not localStorage.getItem('calendar')
+			if localStorage.getItem('calendar')
 				location.hash = '#list'
 			else
 				location.hash = '#login'
