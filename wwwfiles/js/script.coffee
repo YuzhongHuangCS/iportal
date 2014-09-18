@@ -58,6 +58,7 @@ parse = (body) ->
 	for course in body
 		for lesson in course.lessons
 			lesson['name'] = course.name
+			lesson['component'] = course.component
 			[day, month, year] = lesson.date.split('/')
 
 			if not calendar[year]?
@@ -164,6 +165,7 @@ render = (year, month, day) ->
 			html += 		"<p><b>Classroom: </b>#{course.room}</p>"
 			html += 		"<p><b>Instructor: </b>#{course.instructor}</p>"
 			html += 		"<p><b>Date: </b>#{course.date}</p>"
+			html += 		"<p><b>Component: </b>#{course.component}</p>"
 			html += 	'</div>'
 			html += '</div>'
 

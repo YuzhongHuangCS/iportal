@@ -55,36 +55,39 @@ parse = (body, res) ->
 	courses = []
 	$('table.PSGROUPBOXWBO').each (index, value) ->
 		if index != 0
-			classes = {}
 			info = []
-			current = ''
+			classes = []
+			current = -1
+			# It is very dirty here, be careful!
 			$(this).find('span.PSEDITBOX_DISPONLY, span.PSLONGEDITBOX').each (index, value) ->
 				node = $(this).text()
 				if node.length > 1
 					if Number(node) and node.length == 4
-						current = node
-						classes[node] = []
-					if current.length
-						classes[current].push(node)
-					else
+						current += 1
+						classes[current] = []
+					if current == -1
 						info.push(node)
+					else
+						classes[current].push(node)
 
-			for key, value of classes
+			for item in classes
 				course = {
 					"name": $(this).find('td.PAGROUPDIVIDER').text()
 				}
+
 				course['status'] = info[0]
 				course['units'] = info[1]
 				course['grading'] = info[2]
-				course['classNumber'] = value.shift()
-				course['component'] = value.shift()
+				course['classNumber'] = item.shift()
+				course['component'] = item.shift()
 				course['lessons'] = []
-				for i in [0...value.length] by 4
+
+				for i in [0...item.length] by 4
 					lesson =
-						time: value[i]
-						room: value[i+1]
-						instructor: value[i+2]
-						date: value[i+3].split(' - ')[0]
+						time: item[i]
+						room: item[i+1]
+						instructor: item[i+2]
+						date: item[i+3].split(' - ')[0]
 					course['lessons'].push(lesson)
 
 				courses.push(course)
