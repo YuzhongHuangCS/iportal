@@ -3,6 +3,9 @@ express = require 'express'
 fetcher = require './fetcher'
 app = express()
 
+process.on 'uncaughtException', (err) ->
+	console.log err
+
 app.get '/query', (req, res) ->
 	if req.query.id? and req.query.password?
 		fetcher.run(req.query.id, req.query.password, res)
