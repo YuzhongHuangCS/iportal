@@ -55,32 +55,39 @@ parse = (body, res) ->
 	courses = []
 	$('table.PSGROUPBOXWBO').each (index, value) ->
 		if index != 0
-			course = {
-				"name": $(this).find('td.PAGROUPDIVIDER').text()
-			}
-
-			nodes = []
+			classes = {}
+			info = []
+			current = ''
 			$(this).find('span.PSEDITBOX_DISPONLY, span.PSLONGEDITBOX').each (index, value) ->
 				node = $(this).text()
 				if node.length > 1
-					nodes.push(node)
+					if Number(node) and node.length == 4
+						current = node
+						classes[node] = []
+					if current.length
+						classes[current].push(node)
+					else
+						info.push(node)
 
-			course['status'] = nodes.shift()
-			course['units'] = nodes.shift()
-			course['grading'] = nodes.shift()
-			course['classNumber'] = nodes.shift()
-			course['component'] = nodes.shift()
-			course['lessons'] = []
+			for key, value of classes
+				course = {
+					"name": $(this).find('td.PAGROUPDIVIDER').text()
+				}
+				course['status'] = info[0]
+				course['units'] = info[1]
+				course['grading'] = info[2]
+				course['classNumber'] = value.shift()
+				course['component'] = value.shift()
+				course['lessons'] = []
+				for i in [0...value.length] by 4
+					lesson =
+						time: value[i]
+						room: value[i+1]
+						instructor: value[i+2]
+						date: value[i+3].split(' - ')[0]
+					course['lessons'].push(lesson)
 
-			for i in [0...nodes.length] by 4
-				lesson =
-					time: nodes[i]
-					room: nodes[i+1]
-					instructor: nodes[i+2]
-					date: nodes[i+3].split(' - ')[0]
-				course['lessons'].push(lesson)
-
-			courses.push(course)
+				courses.push(course)
 
 	res.json(courses)
 
