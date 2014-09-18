@@ -38,7 +38,7 @@ $(
 
 fetch = (queryString) ->
 	$.mobile.loading 'show',
-		text: "Preparing data may take a long time, but it is needed only on the first time.",
+		text: "Prepare data may take a long time, but it is needed only on the first time.",
 		textVisible: true,
 		textonly: false,
 	
