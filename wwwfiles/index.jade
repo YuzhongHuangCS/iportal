@@ -12,13 +12,13 @@ html(manifest="cache.manifest")
 		script(src="bower_components/jquery-mobile/jquery.mobile-1.4.4.min.js")
 		script(src="js/script.js")
 
-
 	body
 		div(data-role="page" id="login" class="ui-page ui-page-footer-fixed")
 			div(data-role="header")
 				h1 iPortal - Promise to be your friend
 
 			div.ui-content(role="main")
+				img(src="img/logo.png" id="logo")
 				form#loginForm
 					label(for="id") Student ID:
 					input(name="id" id="id" type="text")
