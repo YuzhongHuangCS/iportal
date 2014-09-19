@@ -1,19 +1,16 @@
 CACHE MANIFEST
-# verson 9
+# verson 10
 bower_components/jquery-mobile/jquery.mobile-1.4.4.min.css
 bower_components/jquery/dist/jquery.min.js
 bower_components/jquery-mobile/jquery.mobile-1.4.4.min.js
 bower_components/jquery-mobile/images/ajax-loader.gif
 bower_components/jquery/dist/jquery.min.map
 bower_components/jquery-mobile/jquery.mobile-1.4.4.min.map
-
 css/style.css
-
 js/script.js
-
 img/logo.png
-
 favicon.ico
+apple-touch-icon.png
 
 NETWORK:
 query
