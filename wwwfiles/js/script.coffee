@@ -1,6 +1,9 @@
 'use strict'
 $(
 	->
+		if typeof(window.orientation) == 'undefined'
+			$('div#login').addClass('desktop')
+
 		$(document).keydown (event) ->
 			enterKeyCode = 13
 			if event.keyCode == enterKeyCode

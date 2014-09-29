@@ -4,107 +4,110 @@
 .font-song {
 	font-family: Georgia, "Nimbus Roman No9 L", "Songti SC", STSong, "AR PL New Sung", "AR PL SungtiL GB", NSimSun, SimSun, "TW\-Sung", "WenQuanYi Bitmap Song", "AR PL UMing CN", "AR PL UMing HK", "AR PL UMing TW", "AR PL UMing TW MBE", serif;
 }
-div#login{
-	@media all and (orientation: portrait) {
-		background-image: url('/img/poly.jpg');
-		background-size: cover;
-		div#slogan{
-			display: none;
-		}
-		img#logo{
-			display: block;
-			width: 50%;
-			margin: 10% auto;
-			box-shadow: 0 0 1rem #FFF;
-			border-radius: 1rem;
-		}
-		p#tip{
-			text-align: center;
-			font-size: 1.4rem;
-			color: rgba(255, 255, 255, 0.8);
-			text-shadow: none;
-		}
-		form#loginForm{
-			margin-top: 1rem;
-			div#loginButton{
-				margin-top: 2rem;
-			}
+div#login {
+	background-image: url('/img/poly.jpg');
+	background-size: cover;
+	div#slogan {
+		display: none;
+	}
+	img#logo {
+		display: block;
+		width: 50%;
+		margin: 10% auto 5%;
+		box-shadow: 0 0 1rem #FFF;
+		border-radius: 1rem;
+	}
+	p#intro {
+		margin: 0;
+		text-align: center;
+		font-size: 1.2rem;
+		color: rgba(255, 255, 255, 0.8);
+	}
+	p#tip {
+		text-align: center;
+		font-size: 1.5rem;
+		color: rgba(255, 255, 255, 0.8);
+		text-shadow: none;
+	}
+	form#loginForm {
+		margin-top: 1rem;
+		div#loginButton {
+			margin-top: 2rem;
 		}
 	}
-	@media all and (orientation: landscape) {
-		background-image: url('/img/poly.jpg');
-		background-size: cover;
-		div#slogan{
-			position: absolute;
-			top: 12%;
-			left: 5%;
-			width: 45%;
-			opacity: 0.8;
-			p{
-				color: #FFF;
-				font-size: 2.5rem;
-				background-color: #0F577C;
-				margin: 0;
-				span{
-					opacity: 1;
-				}
-			}
-			p#words{
-				padding: 1.5rem 1.5rem 0.5rem;
-			}
-			p#author{
-				padding: 0.5rem 1.5rem 1.5rem;
-				font-size: 1.25rem;
-				text-align: right;
+}
+div#login.desktop {
+	div#slogan {
+		display: block;
+		position: absolute;
+		top: 12%;
+		left: 5%;
+		width: 45%;
+		opacity: 0.8;
+		p {
+			color: #FFF;
+			font-size: 2.5rem;
+			background-color: #0F577C;
+			margin: 0;
+			span {
+				opacity: 1;
 			}
 		}
-		div[role=main]{
-			position: absolute;
-			top: 12%;
-			width: 30%;
-			right: 7.5%;
-			background-color: rgba(255, 255, 255, 0.3);
-			img#logo{
-				display: block;
-				margin: 5% auto;
-				width: 50%;
-				border-radius: 0.5rem;
-				box-shadow: 0 0 0.5rem;
-				opacity: 0.85;
-			}
-			p#tip{
-				text-align: center;
-				font-size: 1.4rem;
-				color: #522424;
-				text-shadow: none;
-			}
-			form#loginForm{
-				color: #000;
-				text-shadow: #000;
-				width: 100%;
-				div#loginButton{
-					margin-top: 7.5%;
-				}
+		p#words {
+			padding: 1.5rem 1.5rem 0.5rem;
+		}
+		p#author {
+			padding: 0.5rem 1.5rem 1.5rem;
+			font-size: 1.25rem;
+			text-align: right;
+		}
+	}
+	div[role=main] {
+		position: absolute;
+		top: 12%;
+		width: 30%;
+		right: 7.5%;
+		background-color: rgba(255, 255, 255, 0.3);
+		img#logo {
+			display: block;
+			margin: 5% auto;
+			width: 50%;
+			border-radius: 0.5rem;
+			box-shadow: 0 0 0.5rem;
+			opacity: 0.85;
+		}
+		p#tip {
+			text-align: center;
+			font-size: 1.4rem;
+			color: #522424;
+			text-shadow: none;
+		}
+		form#loginForm {
+			color: #000;
+			text-shadow: #000;
+			width: 100%;
+			div#loginButton {
+				margin-top: 7.5%;
 			}
 		}
 	}
 }
-div#list{
-	div#courseList{
-		div.courseUnit{
+div#list {
+	div#courseList {
+		div.courseUnit {
 			margin-bottom: 1rem;
 		}
 	}
 }
-div#toolsPanel{
-	p#logoBar{
+div#toolsPanel {
+	p#logoBar {
 		vertical-align: center;
 		margin: 0;
-		span{
+		span {
 			font-size: 1.5rem;
 		}
 	}
-	img#smallLogo{
+	img#smallLogo {
 		width: 1.5rem;
 		margin: 0;
 	}
