@@ -14,18 +14,24 @@ html(manifest="cache.manifest")
 		script(src="js/script.js")
 		link(rel="shortcut icon" href="favicon.ico")
 
-	body
+	body.font-hei
 		div(data-role="page" id="login" class="ui-page ui-page-footer-fixed")
-			div(data-role="header")
-				h1 iPortal - Promise to be your friend
-
+			div#slogan
+				p.font-song#words
+					span iPortal is a gift for you to get control of the courses.
+				p.font-song#author
+					span 
+						big ——Yuzo
+					br
+					span 
+						small designer &amp; developer of iPortal
 			div.ui-content(role="main")
 				img(src="img/logo.png" id="logo")
+				p#tip
+					span.font-song Login with your myportal account
 				form#loginForm
-					label(for="id") Student ID:
-					input(name="id" id="id" type="text")
-					label(for="password") PassWord:
-					input(name="password" id="password" type="password" autocomplete="off")
+					input(name="id" placeholder="  Student ID" type="text")
+					input(name="password" placeholder="  Password" type="password" autocomplete="off")
 					div#loginButton(class="ui-shadow ui-btn ui-corner-all ui-btn-b") Login
 
 		div(data-role="page" id="list")
