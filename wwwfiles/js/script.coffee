@@ -18,6 +18,11 @@ $(
 		$(window).on 'load hashchange', (event) ->
 			if location.hash == '#list'
 				today()
+			$('a[href]').removeClass('current')
+			switch location.hash
+				when '#list' then $('a[href=#list]').addClass('current')
+				when '#plan' then $('a[href=#plan]').addClass('current')
+				when '#about' then $('a[href=#about]').addClass('current')
 
 		$('#loginButton').click ->
 			queryString = $('#loginForm').serialize()
@@ -152,7 +157,7 @@ update = (option) ->
 
 render = (year, month, day) ->
 
-	todayDate = "#{year}/#{month}/#{day} Class List"
+	todayDate = "#{year}/#{month}/#{day}"
 	$('#todayDate').text(todayDate)
 
 	data = JSON.parse(localStorage.getItem('calendar'))
