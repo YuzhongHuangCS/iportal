@@ -1,7 +1,7 @@
 'use strict'
 $(
 	->
-		if window.orientation?
+		if not window.orientation?
 			$('div#login').addClass('desktop')
 
 		$(document).keydown (event) ->

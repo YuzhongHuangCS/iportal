@@ -1,5 +1,6 @@
 'use strict'
 cheerio = require 'cheerio'
+request = require 'request'
 
 run = (id, password, res) ->
 	option(id, password, res)
@@ -26,25 +27,25 @@ option = (id, password, res) ->
 		EMPLID: id
 		TargetFrameName:"None"
 	listOptions =
-			url: listUrl
-			qs: listQueryString
+		url: listUrl
+		qs: listQueryString
 
 	fetch(loginOptions, listOptions, res)
 
 fetch = (loginOptions, listOptions, res) ->
-	request = require('request').defaults
-		jar: require('request').jar()
+	thisRequest = request.defaults
+		jar: request.jar()
 		strictSSL: false
 		gzip: true
 		followAllRedirects: true
 		headers:
 			"User-Agent": "Node.js/Express"
 
-	request loginOptions, (loginError, loginResponse, loginBody)->
+	thisRequest loginOptions, (loginError, loginResponse, loginBody)->
 		if loginError
 			console.log(loginError)
 		else
-			request listOptions, (listError, listResponse, listBody) ->
+			thisRequest listOptions, (listError, listResponse, listBody) ->
 				if listError
 					console.log(listError)
 				else
