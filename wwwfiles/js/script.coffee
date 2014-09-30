@@ -102,6 +102,12 @@ parse = (body) ->
 
 			calendar[year][month][day].push(lesson)
 
+	for yearKey, year of calendar
+		for monthKey, month of year
+			for dayKey, day of month
+				day.sort (first, second)->
+					return first.startTimeStamp - second.startTimeStamp
+
 	localStorage.setItem('calendar', JSON.stringify(calendar))
 	location.hash = '#list'
 
