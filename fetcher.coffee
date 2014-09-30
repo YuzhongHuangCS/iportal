@@ -84,7 +84,7 @@ parse = (body, res) ->
 
 				for i in [0...item.length] by 4
 					lesson =
-						time: item[i]
+						time: item[i].substring(3)
 						room: item[i+1]
 						instructor: item[i+2]
 						date: item[i+3].split(' - ')[0]

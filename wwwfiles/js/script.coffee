@@ -1,7 +1,7 @@
 'use strict'
 $(
 	->
-		if typeof(window.orientation) == 'undefined'
+		if window.orientation?
 			$('div#login').addClass('desktop')
 
 		$(document).keydown (event) ->
@@ -82,83 +82,25 @@ parse = (body) ->
 	location.hash = '#list'
 
 today = ->
-	window.monthDayCount =
-		1: 31
-		2: 28
-		3: 31
-		4: 30
-		5: 31
-		6: 30
-		7: 31
-		8: 31
-		9: 30
-		10: 31
-		11: 30
-		12: 31
-
-	d = new Date()
-	year = String(d.getFullYear())
-	month = String((d.getMonth() + 1))
-	day = String (d.getDate())
-
-	if month.length == 1
-		month = '0' + month
-	if day.length == 1
-		day = '0' + day
-
-	window.year = year
-	window.month = month
-	window.day = day
-
-	render(year, month, day)
+	date = new Date()
+	window.date = date
+	render(date)
 
 update = (option) ->
-	year = Number(window.year)
-	month = Number(window.month)
-	day = Number(window.day)
+	targetDate = window.date
+	targetDate.setDate(targetDate.getDate() + option)
+	render(targetDate)
 
-	'''
-	Improvement needed
-		handle of leap year
-	'''
+render = (date) ->
+	$('#todayDate').text(date.toDateString())
 
-	if option == -1
-		day -= 1
-		if day <= 0
-			month -= 1
-			if month <= 0
-				month = 12
-				year -= 1
-			day = window.monthDayCount[month]
-
-	else
-		day += 1
-		if day > window.monthDayCount[month]
-			day = 1
-			month += 1
-			if month > 12
-				month = 1
-				year += 1
-
-	year = String(year)
-	month = String(month)
-	day = String(day)
-
+	year = String(date.getFullYear())
+	month = String(date.getMonth() + 1)
+	day = String(date.getDate())
 	if month.length == 1
 		month = '0' + month
 	if day.length == 1
 		day = '0' + day
-
-	render(year, month, day)
-
-	window.year = year
-	window.month = month
-	window.day = day
-
-render = (year, month, day) ->
-
-	todayDate = "#{year}/#{month}/#{day}"
-	$('#todayDate').text(todayDate)
 
 	data = JSON.parse(localStorage.getItem('calendar'))
 	if data[year][month][day]?
