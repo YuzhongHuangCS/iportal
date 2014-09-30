@@ -18,8 +18,9 @@ $(
 		$(window).on 'load hashchange', (event) ->
 			if location.hash == '#list'
 				today()
+
 			$('a[href]').removeClass('current')
-			switch location.hash
+			switch window.location.hash
 				when '#list' then $('a[href=#list]').addClass('current')
 				when '#plan' then $('a[href=#plan]').addClass('current')
 				when '#about' then $('a[href=#about]').addClass('current')
@@ -68,6 +69,29 @@ parse = (body) ->
 			lesson['name'] = course.name
 			lesson['component'] = course.component
 			[day, month, year] = lesson.date.split('/')
+
+			[startTime, endTime] = lesson.time.split(' - ')
+			if startTime.substring(startTime.length-2) == 'AM'
+				[startHour, startMin] = startTime.replace('AM', '').split(':')
+			else
+				[startHour, startMin] = startTime.replace('PM', '').split(':')
+				startHour += 12
+
+			if endTime.substring(endTime.length-2) == 'AM'
+				[endHour, endMin] = endTime.replace('AM', '').split(':')
+			else
+				[endHour, endMin] = endTime.replace('PM', '').split(':')
+				endHour += 12
+
+			sd = new Date()
+			sd.setHours(startHour)
+			sd.setMinutes(startMin)
+			ed = new Date()
+			ed.setHours(endHour)
+			ed.setMinutes(endMin)
+
+			lesson['startTimeStamp'] = sd.valueOf()
+			lesson['endTimeStamp'] = ed.valueOf()
 
 			if not calendar[year]?
 				calendar[year] = {}
