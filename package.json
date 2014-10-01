@@ -1,10 +1,11 @@
 {
   "name": "iportal",
   "description": "iportal is a enhanced and mobile optimized version of myportal in SUTD",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "express": "4.x",
-    "cheerio": "x"
+    "cheerio": "x",
+    "compression": "x"
   }
 }

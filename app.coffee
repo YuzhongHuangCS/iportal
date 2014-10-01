@@ -1,7 +1,10 @@
 'use strict'
 express = require 'express'
+compress = require 'compression'
 fetcher = require './fetcher'
+
 app = express()
+app.use(compress())
 
 process.on 'uncaughtException', (err) ->
 	console.log err
