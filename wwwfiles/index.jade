@@ -52,6 +52,25 @@ html(manifest="cache.manifest")
 						li
 							button(class="ui-btn ui-shadow ui-btn-icon-right ui-icon-arrow-r" id="tomorrow") Tomorrow
 
+		div(data-role="page" id="week")
+			include ./panel.jade
+
+			div(data-role="header")
+				a(href="#toolsPanel" class="ui-btn ui-shadow ui-btn-icon-left ui-icon-bullets") Menu
+				h1 The week's class view
+
+			div.ui-content(role="main")
+				svg#weeklyCalender
+
+
+			div(data-role="footer" data-position="fixed")
+				div(data-role="navbar")
+					ul
+						li
+							button(class="ui-btn ui-shadow ui-btn-icon-left ui-icon-arrow-l" id="yesterday") Last Week
+						li
+							button(class="ui-btn ui-shadow ui-btn-icon-right ui-icon-arrow-r" id="tomorrow") Next Week
+
 		div(data-role="page" id="plan")
 			include ./panel.jade
 

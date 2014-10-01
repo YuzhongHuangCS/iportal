@@ -18,10 +18,13 @@ $(
 		$(window).on 'load hashchange', (event) ->
 			if location.hash == '#list'
 				today()
+			if location.hash == '#week'
+				thisWeek()
 
 			$('a[href]').removeClass('current')
 			switch window.location.hash
 				when '#list' then $('a[href=#list]').addClass('current')
+				when '#week' then $('a[href=#week]').addClass('current')
 				when '#plan' then $('a[href=#plan]').addClass('current')
 				when '#about' then $('a[href=#about]').addClass('current')
 
@@ -75,23 +78,16 @@ parse = (body) ->
 				[startHour, startMin] = startTime.replace('AM', '').split(':')
 			else
 				[startHour, startMin] = startTime.replace('PM', '').split(':')
-				startHour += 12
+				startHour = Number(startHour) + 12
 
 			if endTime.substring(endTime.length-2) == 'AM'
 				[endHour, endMin] = endTime.replace('AM', '').split(':')
 			else
 				[endHour, endMin] = endTime.replace('PM', '').split(':')
-				endHour += 12
+				endHour = Number(endHour) + 12
 
-			sd = new Date()
-			sd.setHours(startHour)
-			sd.setMinutes(startMin)
-			ed = new Date()
-			ed.setHours(endHour)
-			ed.setMinutes(endMin)
-
-			lesson['startTimeStamp'] = sd.valueOf()
-			lesson['endTimeStamp'] = ed.valueOf()
+			lesson['start'] = Number(startHour) + (startMin) / 60
+			lesson['end'] = Number(endHour) + (endMin) / 60
 
 			if not calendar[year]?
 				calendar[year] = {}
@@ -106,7 +102,7 @@ parse = (body) ->
 		for monthKey, month of year
 			for dayKey, day of month
 				day.sort (first, second)->
-					return first.startTimeStamp - second.startTimeStamp
+					return first.start - second.start
 
 	localStorage.setItem('calendar', JSON.stringify(calendar))
 	location.hash = '#list'
@@ -160,3 +156,40 @@ render = (date) ->
 		html += '</div>'
 		
 		$('#courseList').html(html)
+
+thisWeek = ->
+	html = '<rect id="back" width="100%" height="100%"></rect>'
+	xCount = 6
+	yCount = 12
+	xStep = 100 / xCount
+	yStep = 100 / yCount
+
+	for x in [1...xCount]
+		html += "<line class='day' x1='#{x*xStep}%' x2='#{x*xStep}%' y1='0%' y2='100%'></line>"
+
+	for y in [1...yCount]
+		html += "<line class='hour' x1='0%' x2='100%' y1='#{y*yStep}%' y2='#{y*yStep}%'></line>"
+
+	data = JSON.parse(localStorage.getItem('calendar'))
+	thisDay = new Date()
+	thisDay.setDate(thisDay.getDate() - thisDay.getDay())
+
+	for d in [1...xCount]
+		thisDay.setDate(thisDay.getDate() + 1)
+		year = String(thisDay.getFullYear())
+		month = String(thisDay.getMonth() + 1)
+		day = String(thisDay.getDate())
+		if month.length == 1
+			month = '0' + month
+		if day.length == 1
+			day = '0' + day
+
+		if data[year][month][day]?
+			for lesson in data[year][month][day]
+				html += "<rect class='lesson' x='#{d*xStep}%' y='#{(lesson.start-9)*yStep}%' width='#{xStep}%' height='#{(lesson.end - lesson.start)*yStep}%'></rect>"
+
+	for y in [0..yCount]
+		html += "<text x='0' y='#{(y-0.75)*yStep}%' fill='black'>#{y+8}:00</text>"
+
+	#console.log(html)
+	$('svg#weeklyCalender').html(html)
