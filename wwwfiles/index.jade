@@ -57,7 +57,7 @@ html(manifest="cache.manifest")
 
 			div(data-role="header")
 				a(href="#toolsPanel" class="ui-btn ui-shadow ui-btn-icon-left ui-icon-bullets") Menu
-				h1 The week's class view
+				h1#weekDate This week class view
 
 			div.ui-content(role="main")
 				svg#weeklyCalender
@@ -67,9 +67,9 @@ html(manifest="cache.manifest")
 				div(data-role="navbar")
 					ul
 						li
-							button(class="ui-btn ui-shadow ui-btn-icon-left ui-icon-arrow-l" id="yesterday") Last Week
+							button(class="ui-btn ui-shadow ui-btn-icon-left ui-icon-arrow-l" id="lastweek") Last Week
 						li
-							button(class="ui-btn ui-shadow ui-btn-icon-right ui-icon-arrow-r" id="tomorrow") Next Week
+							button(class="ui-btn ui-shadow ui-btn-icon-right ui-icon-arrow-r" id="nextweek") Next Week
 
 		div(data-role="page" id="plan")
 			include ./panel.jade

@@ -38,6 +38,11 @@ $(
 		$('#tomorrow').click ->
 			update(1)
 
+		$('#lastweek').click ->
+			updateWeek(-7)
+		$('#nextweek').click ->
+			updateWeek(7)
+
 		$('#refreshButton').click ->
 			fetch(localStorage.getItem('queryString'))
 
@@ -108,9 +113,8 @@ parse = (body) ->
 	location.hash = '#list'
 
 today = ->
-	date = new Date()
-	window.date = date
-	render(date)
+	window.date = new Date()
+	render(window.date)
 
 update = (option) ->
 	targetDate = window.date
@@ -158,6 +162,19 @@ render = (date) ->
 		$('#courseList').html(html)
 
 thisWeek = ->
+	window.date = new Date()
+	renderWeek(window.date)
+
+updateWeek = (option)->
+	window.date.setDate(window.date.getDate() + option)
+	renderWeek(window.date)
+
+renderWeek = (date)->
+	startDay = new Date(date)
+	startDay.setDate(startDay.getDate() - startDay.getDay() + 1)
+	endDay = new Date(startDay)
+	endDay.setDate(endDay.getDate() + 4)
+	$('#weekDate').text(startDay.toDateString().substring(0, 10) + ' - ' + endDay.toDateString().substring(0, 10))
 	html = '<rect id="back" width="100%" height="100%"></rect>'
 	xCount = 6
 	yCount = 12
@@ -171,7 +188,7 @@ thisWeek = ->
 		html += "<line class='hour' x1='0%' x2='100%' y1='#{y*yStep}%' y2='#{y*yStep}%'></line>"
 
 	data = JSON.parse(localStorage.getItem('calendar'))
-	thisDay = new Date()
+	thisDay = new Date(date)
 	thisDay.setDate(thisDay.getDate() - thisDay.getDay())
 
 	for d in [1...xCount]
@@ -186,10 +203,11 @@ thisWeek = ->
 
 		if data[year][month][day]?
 			for lesson in data[year][month][day]
-				html += "<rect class='lesson' x='#{d*xStep}%' y='#{(lesson.start-9)*yStep}%' width='#{xStep}%' height='#{(lesson.end - lesson.start)*yStep}%'></rect>"
+				html += "<rect class='lessonBox' x='#{d*xStep}%' y='#{(lesson.start-9)*yStep}%' width='#{xStep}%' height='#{(lesson.end - lesson.start)*yStep}%'></rect>"
+				html += "<text class='lessonText' x='#{(d+0.05)*xStep}%' y='#{(lesson.start-9+0.35)*yStep}%'>#{lesson.name.substring(0, 7)}</text>"
+				html += "<text class='lessonText' x='#{(d+0.05)*xStep}%' y='#{(lesson.start-9+0.65)*yStep}%'>#{lesson.name.substring(10)}</text>"
 
 	for y in [0..yCount]
-		html += "<text x='0' y='#{(y-0.75)*yStep}%' fill='black'>#{y+8}:00</text>"
+		html += "<text class='clock' x='0' y='#{(y-0.75)*yStep}%'>#{y+8}:00</text>"
 
-	#console.log(html)
 	$('svg#weeklyCalender').html(html)
