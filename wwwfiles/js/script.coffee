@@ -55,10 +55,10 @@ $(
 
 fetch = (queryString) ->
 	$.mobile.loading 'show',
-		text: "Prepare data may take a long time, but it is needed only on the first time.",
+		text: 'It may take a long time to prepare data, but only once.',
 		textVisible: true,
 		textonly: false,
-	
+
 	$.ajax
 		type: 'GET'
 		url: 'query'
@@ -78,21 +78,17 @@ parse = (body) ->
 			lesson['component'] = course.component
 			[day, month, year] = lesson.date.split('/')
 
-			[startTime, endTime] = lesson.time.split(' - ')
-			if startTime.substring(startTime.length-2) == 'AM'
-				[startHour, startMin] = startTime.replace('AM', '').split(':')
-			else
-				[startHour, startMin] = startTime.replace('PM', '').split(':')
-				startHour = Number(startHour) + 12
+			[start, end] = lesson.time.split(' - ').map (value) ->
+				hourmin = value.substring(0, value.length-2).split(':').map (digit) ->
+					return Number(digit)
 
-			if endTime.substring(endTime.length-2) == 'AM'
-				[endHour, endMin] = endTime.replace('AM', '').split(':')
-			else
-				[endHour, endMin] = endTime.replace('PM', '').split(':')
-				endHour = Number(endHour) + 12
+				if value.substring(value.length-2) == 'AM'
+					return hourmin[0] + hourmin[1]/60
+				else
+					return hourmin[0] + hourmin[1]/60 + 12
 
-			lesson['start'] = Number(startHour) + (startMin) / 60
-			lesson['end'] = Number(endHour) + (endMin) / 60
+			lesson['start'] = start
+			lesson['end'] = end
 
 			if not calendar[year]?
 				calendar[year] = {}
@@ -117,9 +113,8 @@ today = ->
 	render(window.date)
 
 update = (option) ->
-	targetDate = window.date
-	targetDate.setDate(targetDate.getDate() + option)
-	render(targetDate)
+	window.date.setDate(window.date.getDate() + option)
+	render(window.date)
 
 render = (date) ->
 	$('#todayDate').text(date.toDateString())
@@ -175,6 +170,7 @@ renderWeek = (date)->
 	endDay = new Date(startDay)
 	endDay.setDate(endDay.getDate() + 4)
 	$('#weekDate').text(startDay.toDateString().substring(0, 10) + ' - ' + endDay.toDateString().substring(0, 10))
+	
 	html = '<rect id="back" width="100%" height="100%"></rect>'
 	xCount = 6
 	yCount = 12
@@ -187,11 +183,14 @@ renderWeek = (date)->
 	for y in [1...yCount]
 		html += "<line class='hour' x1='0%' x2='100%' y1='#{y*yStep}%' y2='#{y*yStep}%'></line>"
 
+	for y in [0..yCount]
+		html += "<text class='clock' x='0' y='#{(y-0.75)*yStep}%'>#{y+8}:00</text>"
+
 	data = JSON.parse(localStorage.getItem('calendar'))
 	thisDay = new Date(date)
 	thisDay.setDate(thisDay.getDate() - thisDay.getDay())
 
-	for d in [1...xCount]
+	for x in [1...xCount]
 		thisDay.setDate(thisDay.getDate() + 1)
 		year = String(thisDay.getFullYear())
 		month = String(thisDay.getMonth() + 1)
@@ -203,11 +202,8 @@ renderWeek = (date)->
 
 		if data[year][month][day]?
 			for lesson in data[year][month][day]
-				html += "<rect class='lessonBox' x='#{d*xStep}%' y='#{(lesson.start-9)*yStep}%' width='#{xStep}%' height='#{(lesson.end - lesson.start)*yStep}%'></rect>"
-				html += "<text class='lessonText' x='#{(d+0.05)*xStep}%' y='#{(lesson.start-9+0.4)*yStep}%'>#{lesson.name.substring(0, 7)}</text>"
-				html += "<text class='lessonText' x='#{(d+0.05)*xStep}%' y='#{(lesson.start-9+0.8)*yStep}%'>#{lesson.name.substring(10)}</text>"
-
-	for y in [0..yCount]
-		html += "<text class='clock' x='0' y='#{(y-0.75)*yStep}%'>#{y+8}:00</text>"
+				html += "<rect class='lessonBox' x='#{x*xStep}%' y='#{(lesson.start-9)*yStep}%' width='#{xStep}%' height='#{(lesson.end - lesson.start)*yStep}%'></rect>"
+				html += "<text class='lessonText' x='#{(x+0.05)*xStep}%' y='#{(lesson.start-9+0.4)*yStep}%'>#{lesson.name.substring(0, 7)}</text>"
+				html += "<text class='lessonText' x='#{(x+0.05)*xStep}%' y='#{(lesson.start-9+0.8)*yStep}%'>#{lesson.name.substring(10)}</text>"
 
 	$('svg#weeklyCalender').html(html)

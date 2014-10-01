@@ -73,7 +73,7 @@ div#login.desktop {
 			box-shadow: 0 0 0.5rem;
 			opacity: 0.85;
 		}
-		p#intro{
+		p#intro {
 			display: none;
 		}
 		p#tip {
@@ -99,31 +99,31 @@ div#list {
 		}
 	}
 }
-div#week{
-	svg#weeklyCalender{
+div#week {
+	svg#weeklyCalender {
 		width: 100%;
 		height: 100vh;
-		rect#back{
+		rect#back {
 			width: 100%;
 			height: 100%;
 			fill: #EEE;
 		}
-		line.hour{
+		line.hour {
 			stroke: #FFF;
 			stroke-width: 2
 		}
-		line.day{
+		line.day {
 			stroke: #FFF;
 			stroke-width: 2
 		}
-		rect.lessonBox{
+		rect.lessonBox {
 			fill: #38c;
 		}
-		text.lessonText{
-			fill: white;
+		text.lessonText {
+			fill: #FFF;
 		}
-		text.clock{
-			fill: black;
+		text.clock {
+			fill: #000;
 		}
 	}
 }
@@ -139,6 +139,12 @@ div#toolsPanel {
 		width: 1.5rem;
 		margin: 0 0 -3px;
 	}
+	.current {
+		background-color: #38c;
+		border-color: #38c;
+		color: #fff;
+		text-shadow: 0 1px 0 #059;
+	}
 }
 div#about {
 	img#logo {
@@ -151,10 +157,4 @@ div#about {
 	p#author {
 		text-align: right;
 	}
-}
-.current {
-	background-color: #38c !important;
-	border-color: #38c !important;
-	color: #fff !important;
-	text-shadow: 0 1px 0 #059 !important;
 }
