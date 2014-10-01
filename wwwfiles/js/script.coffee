@@ -174,7 +174,7 @@ renderWeek = (date)->
 	startDay.setDate(startDay.getDate() - startDay.getDay() + 1)
 	endDay = new Date(startDay)
 	endDay.setDate(endDay.getDate() + 4)
-	$('#weekDate').text(startDay.toDateString().substring(0, 10) + ' - ' + endDay.toDateString().substring(0, 10))
+	$('#weekDate').text(startDay.toDateString().substring(0, 10) + '=>' + endDay.toDateString().substring(0, 10))
 	html = '<rect id="back" width="100%" height="100%"></rect>'
 	xCount = 6
 	yCount = 12
