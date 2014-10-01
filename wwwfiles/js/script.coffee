@@ -204,7 +204,7 @@ renderWeek = (date)->
 		if data[year][month][day]?
 			for lesson in data[year][month][day]
 				html += "<rect class='lessonBox' x='#{d*xStep}%' y='#{(lesson.start-9)*yStep}%' width='#{xStep}%' height='#{(lesson.end - lesson.start)*yStep}%'></rect>"
-				html += "<text class='lessonText' x='#{(d+0.05)*xStep}%' y='#{(lesson.start-9+0.45)*yStep}%'>#{lesson.name.substring(0, 7)}</text>"
+				html += "<text class='lessonText' x='#{(d+0.05)*xStep}%' y='#{(lesson.start-9+0.4)*yStep}%'>#{lesson.name.substring(0, 7)}</text>"
 				html += "<text class='lessonText' x='#{(d+0.05)*xStep}%' y='#{(lesson.start-9+0.9)*yStep}%'>#{lesson.name.substring(10)}</text>"
 
 	for y in [0..yCount]
