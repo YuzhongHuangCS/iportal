@@ -6,6 +6,6 @@ lessc -x wwwfiles/css/style.less wwwfiles/css/style.css
 jade wwwfiles/*.jade
 
 # compress
-uglifyjs wwwfiles/js/script.js --compress -o wwwfiles/js/script.js
+uglifyjs wwwfiles/js/script.js --mangle --compress --screw-ie8 -o wwwfiles/js/script.js
 
 echo "The files are ready to deploy."
