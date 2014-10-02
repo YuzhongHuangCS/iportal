@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# verson 26
+# verson 27
 bower_components/jquery-mobile/jquery.mobile-1.4.4.min.css
 bower_components/jquery/dist/jquery.min.js
 bower_components/jquery-mobile/jquery.mobile-1.4.4.min.js
@@ -8,8 +8,6 @@ css/style.css
 js/script.js
 img/logo.png
 img/poly.jpg
-favicon.ico
-apple-touch-icon.png
 
 NETWORK:
 query
