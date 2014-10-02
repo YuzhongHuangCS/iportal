@@ -1,4 +1,4 @@
 iportal
 =======
 
-Site: iportal.pillowsky.org
+http://iportal.pillowsky.org
