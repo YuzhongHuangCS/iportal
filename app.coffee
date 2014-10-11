@@ -15,7 +15,4 @@ app.get '/query', (req, res) ->
 	else
 		res.send 'invalid'
 
-app.use(express.static('/home/hyz/iportal/wwwfiles'))
-
-server = app.listen 8000, ->
-	console.log "Listening on #{server.address().address}:#{server.address().port}"
+app.use(express.static(__dirname + '/wwwfiles'))
