@@ -13,3 +13,5 @@ app.get '/query', (req, res) ->
 		res.send 'invalid'
 
 app.use(express.static(__dirname + '/wwwfiles'))
+
+exports.app = app
