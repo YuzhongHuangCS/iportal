@@ -6,6 +6,8 @@ html(manifest="cache.manifest")
 		meta(name="description" content="iPortal is a mobile-optimized version of MyPortal")
 		meta(name="renderer" content="webkit")
 		meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+		meta(name="mobile-web-app-capable" content="yes")
+		meta(name="apple-mobile-web-app-capable" content="yes")
 		title iPortal
 		link(rel="stylesheet" href="bower_components/jquery-mobile/jquery.mobile-1.4.4.min.css")
 		link(rel="stylesheet" href="css/style.css")
@@ -13,7 +15,7 @@ html(manifest="cache.manifest")
 		script(src="bower_components/jquery-mobile/jquery.mobile-1.4.4.min.js")
 		script(src="js/script.js")
 		link(rel="icon" type="image/png" sizes="512x512" href="img/logo.png")
-		line(rel="apple-touch-icon" type="image/png" sizes="512x512" href="img/logo.png")
+		link(rel="apple-touch-icon" type="image/png" sizes="512x512" href="img/logo.png")
 
 	body.font-hei
 		div(data-role="page" id="login" class="ui-page ui-page-footer-fixed")
@@ -37,8 +39,6 @@ html(manifest="cache.manifest")
 					div#loginButton(class="ui-shadow ui-btn ui-corner-all ui-btn-b") Login
 
 		div(data-role="page" id="list")
-			include ./panel.jade
-
 			div(data-role="header")
 				a(href="#toolsPanel" class="ui-btn ui-shadow ui-btn-icon-left ui-icon-bullets") Menu
 				h1#todayDate Today's class List
@@ -54,8 +54,6 @@ html(manifest="cache.manifest")
 							button(class="ui-btn ui-shadow ui-btn-icon-right ui-icon-arrow-r" id="tomorrow") Tomorrow
 
 		div(data-role="page" id="week")
-			include ./panel.jade
-
 			div(data-role="header")
 				a(href="#toolsPanel" class="ui-btn ui-shadow ui-btn-icon-left ui-icon-bullets") Menu
 				h1#weekDate This week class view
@@ -72,8 +70,6 @@ html(manifest="cache.manifest")
 							button(class="ui-btn ui-shadow ui-btn-icon-right ui-icon-arrow-r" id="nextweek") Next Week
 
 		div(data-role="page" id="plan")
-			include ./panel.jade
-
 			div(data-role="header")
 				a(href="#toolsPanel" class="ui-btn ui-shadow ui-btn-icon-left ui-icon-bullets") Menu
 				h1 What's coming?
@@ -87,8 +83,6 @@ html(manifest="cache.manifest")
 				p A place like quora where you can put your comments for course and others vote for it.
 
 		div(data-role="page" id="about")
-			include panel.jade
-
 			div(data-role="header")
 				a(href="#toolsPanel" class="ui-btn ui-shadow ui-btn-icon-left ui-icon-bullets") Menu
 				h1 About
@@ -108,3 +102,22 @@ html(manifest="cache.manifest")
 					br
 					span
 						small chief designer &amp; developer of iPortal
+
+		div(data-role="panel" id="toolsPanel" data-theme="b")
+			ul(data-role="listview")
+				li
+					p(id="logoBar")
+						img(src="img/logo.png" id="smallLogo")
+						span iPortal
+				li(data-icon="bars")
+					a(href="#list") Class List
+				li(data-icon="calendar")
+					a(href="#week") Weekly view
+				li(data-icon="clock")
+					a(href="#plan") What's coming
+				li(data-icon="info")
+					a(href="#about") About
+				li(data-icon="refresh" id="refreshButton")
+					a Refresh
+				li(data-icon="back" id="logoutButton")
+					a Logout

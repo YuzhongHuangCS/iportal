@@ -4,6 +4,8 @@ $(
 		if not window.orientation?
 			$('div#login').addClass('desktop')
 
+		$("body > [data-role='panel']").enhanceWithin().panel();
+
 		$(document).keydown (event) ->
 			enterKeyCode = 13
 			if event.keyCode == enterKeyCode
