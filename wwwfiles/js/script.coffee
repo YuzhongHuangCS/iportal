@@ -4,8 +4,6 @@ $(
 		if not window.orientation?
 			$('div#login').addClass('desktop')
 
-		$("body > [data-role='panel']").enhanceWithin().panel();
-
 		$(document).keydown (event) ->
 			enterKeyCode = 13
 			if event.keyCode == enterKeyCode
@@ -14,6 +12,7 @@ $(
 		$(window).on 'load', (event) ->
 			if localStorage.getItem('calendar')
 				location.hash = '#list'
+				$("body > [data-role='panel']").enhanceWithin().panel()
 			else
 				location.hash = '#login'
 
@@ -172,7 +171,7 @@ renderWeek = (date)->
 	endDay = new Date(startDay)
 	endDay.setDate(endDay.getDate() + 4)
 	$('#weekDate').text(startDay.toDateString().substring(0, 10) + ' - ' + endDay.toDateString().substring(0, 10))
-	
+
 	html = '<rect id="back" width="100%" height="100%"></rect>'
 	xCount = 6
 	yCount = 12
