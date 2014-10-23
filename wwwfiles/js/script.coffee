@@ -1,6 +1,8 @@
 'use strict'
 $(
 	->
+		$('div#toolsPanel').enhanceWithin().panel()
+
 		if not window.orientation?
 			$('div#login').addClass('desktop')
 
@@ -12,7 +14,6 @@ $(
 		$(window).on 'load', (event) ->
 			if localStorage.getItem('calendar')
 				location.hash = '#list'
-				$("body > [data-role='panel']").enhanceWithin().panel()
 			else
 				location.hash = '#login'
 

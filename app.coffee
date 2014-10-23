@@ -14,4 +14,8 @@ app.get '/query', (req, res) ->
 
 app.use(express.static(__dirname + '/wwwfiles'))
 
-exports.app = app
+if require.main == module
+	app.listen 8000, ->
+		console.log "Listening on #{this.address().address}:#{this.address().port}"
+else
+	exports.app = app
